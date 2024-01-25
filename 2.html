@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Twitter Home Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+
+        #container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding: 10px 0;
+            background-color: #1da1f2; /* Twitter blue color */
+        }
+
+        header a {
+            color: #fff;
+            text-decoration: none;
+            padding: 10px;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+
+        header a:hover {
+            background-color: #126cad; /* Darker blue on hover */
+        }
+
+        #tweets {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .tweet {
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            background-color: #f9f9f9; /* Light gray background */
+        }
+
+        .tweet img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 10px;
+            position: relative;
+        }
+
+        .tweet img:after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: #ff6347; /* Tomato color for sticker */
+            border-radius: 50%;
+            bottom: 0;
+            right: 0;
+        }
+
+        .tweet-content {
+            margin-top: 5px;
+        }
+
+        .tweet p {
+            margin: 0;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        #abusiveButton {
+            display: block;
+            margin: 0 auto;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #ff6347; /* Tomato color */
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none; /* Remove underline for links */
+        }
+
+        #abusiveButton:hover {
+            background-color: #ff473a; /* Darker Tomato color on hover */
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <header>
+            <h1 style="color: #fff;">Home</h1>
+            <nav>
+                <a href="#" style="background-color: #126fad;">Home</a>
+                <a href="#">Explore</a>
+                <a href="#">Notifications</a>
+                <a href="#">Messages</a>
+            </nav>
+        </header>
+
+        <a href=" http://localhost:8501"  id="abusiveButton">Tweet your ideas/thoughts</a>
+
+        <div id="tweets"></div>
+    </div>
+
+    <footer>
+        &copy; 2024 Your Twitter Clone
+    </footer>
+
+    <script>
+        // Sample data for tweets
+        const tweetsData = [
+            "This is a sample tweet. #webdevelopment #coding",
+            "Just had a great day at work! #worklife #positivevibes",
+            "Learning JavaScript is so much fun! #javascript #coding",
+            "Excited about the upcoming project. #excited #project",
+            "Having a relaxing weekend. #weekendvibes #relaxation",
+            "The journey of a thousand miles begins with a single step. #inspiration",
+            "Coding is like solving puzzles. #coding #programming",
+            "Exploring new technologies. #tech #exploration",
+            "Coffee and code – perfect combination. #codingfuel #coffee",
+            "Happy birthday to a fantastic friend! 🎉🎂 #birthday",
+        ];
+
+        // Function to generate a random tweet
+        function getRandomTweet() {
+            const randomIndex = Math.floor(Math.random() * tweetsData.length);
+            return tweetsData[randomIndex];
+        }
+
+        // Function to generate a random profile image URL
+        function getRandomProfileImage() {
+            const randomImageNumber = Math.floor(Math.random() * 10) + 1;
+            return `profile${randomImageNumber}.jpg`; // Assuming profile images are named profile1.jpg, profile2.jpg, etc.
+        }
+
+        // Function to display tweets on the webpage
+        function displayTweets() {
+            const tweetsContainer = document.getElementById("tweets");
+
+            for (let i = 0; i < 5; i++) { // Displaying 5 random tweets
+                const tweetElement = document.createElement("div");
+                tweetElement.classList.add("tweet");
+
+                tweetElement.innerHTML = `
+                    <img src="${getRandomProfileImage()}" alt="Profile Picture">
+                    <div class="tweet-content">
+                        <strong>super heroes</strong>
+                        <p>${getRandomTweet()}</p>
+                    </div>
+                `;
+
+                tweetsContainer.appendChild(tweetElement);
+            }
+        }
+
+        // Display tweets when the page loads
+        displayTweets();
+    </script>
+</body>
+</html>
